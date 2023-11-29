@@ -27,8 +27,8 @@ class Pessoa {
 }
 
 // Exemplo de uso da classe Pessoa
-const pessoa1 = new Pessoa('Alice', 1990, 'Cidade A');
-const pessoa2 = new Pessoa('Bob', 1985, 'Cidade B');
+const pessoa1 = new Pessoa('Ana', 1990, 'Aracaju');
+const pessoa2 = new Pessoa('José', 1985, 'Pernambuco');
 
 // Teste o método calcularIdadeBissextos para anos específicos
 const anoAtual = new Date().getFullYear();
