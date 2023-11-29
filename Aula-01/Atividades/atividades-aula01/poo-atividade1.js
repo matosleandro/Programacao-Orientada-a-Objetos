@@ -1,24 +1,36 @@
 class Pessoa {
-    constructor(nome, idade, cidade) {
-      this.nome = nome;
-      this.idade = idade;
-      this.cidade = cidade;
-    }
-  
-    calcularIdadeBissextos(ano) {
-      // Verifica se o ano é bissexto
-      const isBissexto = (ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0);
-  
-      // Se o ano é bissexto, incrementa a idade
-      return isBissexto ? this.idade + 1 : this.idade;
-    }
+  constructor(nome, anoNascimento, cidade) {
+    this.nome = nome;
+    this.anoNascimento = anoNascimento;
+    this.cidade = cidade;
   }
-  
-  // Exemplo de uso:
-  const pessoa1 = new Pessoa('Alice', 25, 'CidadeA');
-  const pessoa2 = new Pessoa('Bob', 30, 'CidadeB');
-  
-  // Testando o método calcularIdadeBissextos para diferentes anos
-  const anoAtual = new Date().getFullYear();
-  console.log(`${pessoa1.nome} teria ${pessoa1.calcularIdadeBissextos(anoAtual)} anos em ${anoAtual}.`);
-  console.log(`${pessoa2.nome} teria ${pessoa2.calcularIdadeBissextos(anoAtual)} anos em ${anoAtual}.`);
+
+  // Método para verificar se um ano é bissexto
+  static isBissexto(ano) {
+    return (ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0);
+  }
+
+  // Método para calcular a idade da pessoa considerando anos bissextos
+  calcularIdadeBissextos(ano) {
+    let idade = ano - this.anoNascimento;
+
+    // Verifica se o ano de nascimento é bissexto
+    if (Pessoa.isBissexto(this.anoNascimento)) {
+      // Verifica se o ano atual é bissexto e se já passou o aniversário da pessoa
+      if (Pessoa.isBissexto(ano) && new Date().getTime() >= new Date(ano, 0, 1).getTime()) {
+        idade++;
+      }
+    }
+
+    return idade;
+  }
+}
+
+// Exemplo de uso da classe Pessoa
+const pessoa1 = new Pessoa('Alice', 1990, 'Cidade A');
+const pessoa2 = new Pessoa('Bob', 1985, 'Cidade B');
+
+// Teste o método calcularIdadeBissextos para anos específicos
+const anoAtual = new Date().getFullYear();
+console.log(`${pessoa1.nome} tem ${pessoa1.calcularIdadeBissextos(anoAtual)} anos em ${anoAtual}`);
+console.log(`${pessoa2.nome} tem ${pessoa2.calcularIdadeBissextos(anoAtual)} anos em ${anoAtual}`);
