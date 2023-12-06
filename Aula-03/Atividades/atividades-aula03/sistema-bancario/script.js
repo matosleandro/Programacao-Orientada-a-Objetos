@@ -8,29 +8,41 @@ class Conta {
     }
 
     depositar(valor) {
-        if (valor > 0) {
-            this._saldo += valor;
-            console.log(`Depósito de ${valor} realizado. Novo saldo: ${this._saldo}`);
-        } else {
-            console.error('Valor de depósito inválido.');
+        try {
+            if (valor > 0) {
+                this._saldo += valor;
+                console.log(`Depósito de ${valor} realizado. Novo saldo: ${this._saldo}`);
+            } else {
+                throw new Error('Valor de depósito inválido.');
+            }
+        } catch (error) {
+            console.error(error.message);
         }
     }
 
     sacar(valor) {
-        if (valor > 0) {
-            if (this._podeSacar(valor)) {
-                this._saldo -= valor;
-                console.log(`Saque de ${valor} realizado. Novo saldo: ${this._saldo}`);
+        try {
+            if (valor > 0) {
+                if (this._podeSacar(valor)) {
+                    this._saldo -= valor;
+                    console.log(`Saque de ${valor} realizado. Novo saldo: ${this._saldo}`);
+                } else {
+                    throw new Error('Saldo insuficiente para saque.');
+                }
             } else {
-                console.error('Saldo insuficiente para saque.');
+                throw new Error('Valor de saque inválido.');
             }
-        } else {
-            console.error('Valor de saque inválido.');
+        } catch (error) {
+            console.error(error.message);
         }
     }
 
     consultarSaldo() {
-        console.log(`Saldo atual: ${this._saldo}`);
+        try {
+            console.log(`Saldo atual: ${this._saldo}`);
+        } catch (error) {
+            console.error(error.message);
+        }
     }
 
     _podeSacar(valor) {
@@ -50,7 +62,6 @@ class ContaCorrente extends Conta {
 }
 
 class ContaPoupanca extends Conta {
-    // Implementação específica da Conta Poupança, se necessário
 }
 
 class Cliente {
