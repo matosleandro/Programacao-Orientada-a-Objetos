@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Conversor de Moedas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+        <div class="app-details">
+            <img src="assets/img/app-icon.svg" class="app-icon"/>
+            <h1 class="app-title"> Conversor de Moedas</h1>
+        </div>
+        <label for="amount">Valor:</label>
+        <input type="number" id="amount" value="100">
+        <div class="dropdowns">
+            <select id="from-currency-select"></select>
+            <select id="to-currency-select"></select>
+        </div>
+        <button id="convert-button">Converter</button>
+        <p id="result"></p>
+    </div>
+
+    <script src="assets/js/currency-codes.js"></script>
+    <script src="assets/js/api-key.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
