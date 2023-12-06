@@ -2,7 +2,6 @@ let api = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
 const fromDropDown = document.getElementById("from-currency-select");
 const toDropDown = document.getElementById("to-currency-select");
 
-//Create dropdown from the currencies array
 currencies.forEach((currency) => {
   const option = document.createElement("option");
   option.value = currency;
@@ -10,7 +9,6 @@ currencies.forEach((currency) => {
   fromDropDown.add(option);
 });
 
-//Repeat same thing for the other dropdown
 currencies.forEach((currency) => {
   const option = document.createElement("option");
   option.value = currency;
@@ -23,12 +21,10 @@ fromDropDown.value = "USD";
 toDropDown.value = "BRL";
 
 let convertCurrency = () => {
-  //Create References
   const amount = document.querySelector("#amount").value;
   const fromCurrency = fromDropDown.value;
   const toCurrency = toDropDown.value;
 
-  //If amount input field is not empty
   if (amount.length != 0) {
     fetch(api)
       .then((resp) => resp.json())
@@ -41,7 +37,7 @@ let convertCurrency = () => {
         )} ${toCurrency}`;
       });
   } else {
-    alert("Please fill in the amount");
+    alert("Por favor, informe um valor!");
   }
 };
 
